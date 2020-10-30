@@ -1,7 +1,7 @@
 module Api::V1
   class BooksController < ApplicationController
     before_action :set_book, only: [:show, :update, :destroy]
-
+    # before_action :authenticate_request
     # GET /books
     def index
       @books = Book.all
