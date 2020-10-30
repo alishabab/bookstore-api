@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
     end
   end
-  post 'authenticate', to: 'authentication#authenticate'
+  post 'login', to: 'authentication#login'
   get 'auto_login', to: 'authentication#auto_login'
   get 'user_is_authed', to: 'authentication#user_is_authed'
 end

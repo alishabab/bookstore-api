@@ -1,11 +1,10 @@
 class AuthenticationController < ApplicationController
-  skip_before_action :authenticate_request
- 
-  def authenticate
+  before_action :authenticate_request
+  def login
     command = AuthenticateUser.call(params[:email], params[:password])
- 
+    user = User.find_by(email: params[:email])
     if command.success?
-      render json: { token: command.result }
+      render json: { user: user, jwt: command.result, success: "welcome back #{user.name}" }
     else
       render json: { error: command.errors }, status: :unauthorized
     end
